@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'layout.html' %}
+{% block title %}Edit Post{% endblock %}
+{% block content %}
+<h1>Edit Post</h1>
+<form method="post" action="{{ url_for('edit', post_id=post['id']) }}">
+  <p><input type="text" name="title" value="{{ post['title'] }}"></p>
+  <p><textarea name="content">{{ post['content'] }}</textarea></p>
+  <p>
+    Category:
+    <select name="category_id">
+      {% for cat in categories %}
+        <option value="{{ cat['id'] }}"
+          {% if cat['id'] == post['category_id'] %}selected{% endif %}>
+          {{ cat['name'] }}
+        </option>
+      {%  endfor %}
+    </select>
+  </p>
+  <p><input type="submit" value="Update Post"></p>
+</form>
+{% endblock %}
+
+</body>
+</html>

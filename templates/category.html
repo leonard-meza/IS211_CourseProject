@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'layout.html' %}
+{% block title %}Category: {{ category_name }}{% endblock %}
+{% block content %}
+<h1>Category: {{ category_name }}</h1>
+{% for post in posts %}
+  <div class="post">
+    <h2><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a></h2>
+    <small>{{ post['created'] }}</small>
+    <p>{{ post['content'][:100] }}{% if post['content']|length > 100 %}...{% endif %}</p>
+  </div>
+{% else %}
+  <p>No posts in this category.</p>
+{% endfor %}
+{% endblock %}
+
+
+</body>
+</html>

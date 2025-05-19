@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'layout.html' %}
+{% block title %}All Posts{% endblock %}
+{% block content %}
+<h1>Welcome to the Blog</h1>
+<h3>all blog posts:</h3>
+{% for post in posts %}
+  <div class="post">
+    <h2><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a>
+    </h2>
+    <small>Posted on {{ post['created'] }} |
+      Category: <a href="{{ url_for('category', cat_id=post['category_id']) }}">{{ post['category_name'] }}</a>
+    </small>
+    <p>{{ post['content'][:100] }}{% if post['content']|length > 100 %}...{% endif %}</p>
+  </div>
+{% else %}
+  <p>No posts to display.</p>
+{% endfor %}
+{% endblock %}
+
+</body>
+</html>

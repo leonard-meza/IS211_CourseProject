@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'layout.html' %}
+{% block title %}Categories{% endblock %}
+{% block content %}
+<h1>Categories</h1>
+<ul>
+  {% for cat in categories %}
+    <li><a href="{{ url_for('category', cat_id=cat['id']) }}">{{ cat['name'] }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+</body>
+</html>

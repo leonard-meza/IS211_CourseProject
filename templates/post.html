@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'layout.html' %}
+{% block title %}{{ post['title'] }}{% endblock %}
+{% block content %}
+<h1>{{ post['title'] }}</h1>
+<p><small>Posted on {{ post['created'] }} |
+  Category: <a href="{{ url_for('category', cat_id=post['category_id']) }}">{{ post['category_name'] }}</a>
+</small></p>
+<div>{{ post['content'] }}</div>
+{% endblock %}
+
+</body>
+</html>
